@@ -6,7 +6,7 @@ include 'includes/header.php';
 if (!isset($_SESSION['user'])) {
     header("Location: login.php?redirect=compte.php");
     exit;
-}
+};;
 
 $user = $_SESSION['user'];
 $user_id = $user['id'];
