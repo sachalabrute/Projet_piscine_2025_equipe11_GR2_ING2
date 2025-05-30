@@ -4,7 +4,7 @@ include 'includes/header.php';
 
 // Récupérer tous les agents + leur nom depuis la table utilisateurs
 $stmt = $pdo->query("
-    SELECT a.id, u.nom, u.email, a.specialite, a.cv
+    SELECT a.id, u.nom, u.email, a.specialite, a.cv 
     FROM agents a
     JOIN utilisateurs u ON a.utilisateur_id = u.id 
     ORDER BY a.specialite, u.nom
