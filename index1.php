@@ -2,7 +2,7 @@
 require_once 'includes/db.php';
 include 'includes/header.php';
 ?>
-;
+
 <section>
     <div class="welcome" style="text-align:center;margin-bottom:2.4em;">
         <h1 class="main-title" style="margin-bottom:0.4em;">Bienvenue sur Omnes Immobilier</h1>
