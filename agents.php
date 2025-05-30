@@ -6,7 +6,7 @@ include 'includes/header.php';
 $stmt = $pdo->query("
     SELECT a.id, u.nom, u.email, a.specialite, a.cv
     FROM agents a
-    JOIN utilisateurs u ON a.utilisateur_id = u.id
+    JOIN utilisateurs u ON a.utilisateur_id = u.id ;;;
     ORDER BY a.specialite, u.nom
 ");
 $agents = $stmt->fetchAll();
