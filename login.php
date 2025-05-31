@@ -1,69 +1,69 @@
 <?php
-session_start();
-require_once 'includes/db.php';
 
-$message = '';
-if (isset($_GET['register'])) {
-    $message = "Inscription réussie ! Connectez-vous.";
-}
+$host = 'localhost';
+$db = 'omnes_immobilier';
+$user = 'root';
+$pass = '';
+include 'includes/header.php';
 
-$erreur = '';
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = trim($_POST["email"] ?? '');
-    $mdp = $_POST["mot_de_passe"] ?? '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
-    if ($user && (
-      $mdp === $user['mot_de_passe'] 
-      || password_verify($mdp, $user['mot_de_passe'])
-   )) {
-        $_SESSION["user"] = [
-            "id" => $user['id'],
-            "nom" => $user['nom'],
-            "prenom" => $user['prenom'],
-            "email" => $user['email'],
-            "role" => $user['role'],
-        ];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-        // Redirection intelligente selon le rôle
-        if ($user['role'] === 'agent') {
-            header("Location: agentdashboard.php");
-            exit;
-        } elseif ($user['role'] === 'admin') {
-            header("Location: admin_dashboard.php");
-            exit;
+        $sql = "SELECT id, nom, email, adresse FROM utilisateurs WHERE email = :email AND mot_de_passe = :password";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['email' => $email, 'password' => $password]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            $_SESSION['user'] = $user;
+            header('Location: compte.php');
+            exit();
         } else {
-            header("Location: compte.php");
-            exit;
+            $error = "Email ou mot de passe incorrect.";
         }
-    } else {
-        $erreur = "Email ou mot de passe incorrect.";
+    } catch(PDOException $e) {
+        die("Erreur de connexion : " . $e->getMessage());
     }
 }
 ?>
 
-<?php include 'includes/header.php'; ?>
-<div class="container mt-5" style="max-width:400px;">
-    <h2 class="mb-4 fw-bold">Connexion</h2>
-    <?php if ($message): ?>
-        <div class="alert alert-success"><?= $message ?></div>
-    <?php endif; ?>
-    <?php if ($erreur): ?>
-        <div class="alert alert-danger"><?= $erreur ?></div>
-    <?php endif; ?>
-    <form method="POST" autocomplete="off">
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" required>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Connexion</h2>
+                    <?php if (isset($error)): ?>
+                        <div class="alert alert-danger"><?php echo $error; ?></div>
+                    <?php endif; ?>
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Mot de passe</label>
-            <input type="password" name="mot_de_passe" class="form-control" required>
-        </div>
-        <button class="btn btn-primary w-100" type="submit">Connexion</button>
-    </form>
-    <p class="mt-3 text-center">Pas encore de compte ? <a href="register.php">Créer un compte</a></p>
+    </div>
 </div>
-<?php include 'includes/footer.php'; ?>
+</body>
+</html>
