@@ -127,7 +127,7 @@ if ($role == 'client') {
 
 // ----------- AGENT -----------
 elseif ($role == 'agent') {
-    // Liste des clients ayant déjà écrit à l’agent (historique)
+    // Liste des clients ayant déjà écrit à l’agent (comme un historique)
     $stmt = $pdo->prepare("
         SELECT u.id, u.nom
         FROM messages m
