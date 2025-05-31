@@ -11,7 +11,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'agent') {
 
 $user_id = $_SESSION['user']['id'];
 
-// Récup info agent (table agents liée à utilisateurs)
+// Récup des info agent (table agents liée à utilisateurs)
 $stmt = $pdo->prepare("SELECT * FROM agents WHERE utilisateur_id = ?");
 $stmt->execute([$user_id]);
 $agent = $stmt->fetch();
