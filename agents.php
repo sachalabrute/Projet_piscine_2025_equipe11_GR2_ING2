@@ -12,6 +12,7 @@ $stmt = $pdo->query("
 $agents = $stmt->fetchAll();
 ?>
 
+
     <div class="container mb-5">
         <h1 class="text-center fw-bold mb-5" style="font-family:Poppins,sans-serif;">Nos agents immobiliers agréés</h1>
         <div class="row g-4">
