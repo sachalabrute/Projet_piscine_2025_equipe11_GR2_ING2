@@ -6,7 +6,7 @@ include 'includes/header.php';
 if (!isset($_SESSION['user'])) {
     header("Location: login.php?redirect=messagerie.php");
     exit;
-};
+}
 
 $user_id = $_SESSION['user']['id'];
 $role = $_SESSION['user']['role'];
