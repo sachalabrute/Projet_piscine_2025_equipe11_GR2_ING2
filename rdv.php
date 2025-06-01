@@ -7,7 +7,7 @@ if (!isset($_SESSION['user'])) {
     echo "<p>Veuillez vous connecter pour voir vos rendez-vous.</p>";
     include 'includes/footer.php';
     exit;
-}
+};
 
 $user_id = $_SESSION['user']['id'];
 
