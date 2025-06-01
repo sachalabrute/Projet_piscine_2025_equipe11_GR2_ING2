@@ -1,0 +1,217 @@
+/* ---- RESET ET BASE ---- */
+html, body {
+    height: 100%;
+    font-family: 'Inter', 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://source.unsplash.com/random/1600x900/?realestate');
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px); /* Applique un effet de flou à l'image de fond */
+    z-index: -1; /* Place l'image de fond derrière le contenu */
+}
+a {
+    color: #2066ff;
+    text-decoration: none;
+    transition: color 0.13s;
+}
+a:hover, .nav-link:hover {
+    color: #19c0db !important;
+    text-decoration: underline;
+}
+
+/* ---- HEADER / NAVBAR ---- */
+.navbar {
+    background: rgba(25, 104, 255, 0.92);
+    box-shadow: 0 6px 36px rgba(27, 75, 196, 0.08);
+    border-bottom-left-radius: 1.7rem;
+    border-bottom-right-radius: 1.7rem;
+    backdrop-filter: blur(4px);
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    position: sticky;
+    top: 0; z-index: 99;
+}
+.navbar-brand {
+    font-weight: 800;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 1.55rem;
+    letter-spacing: 1.1px;
+    display: flex;
+    align-items: center;
+}
+.navbar-brand img {
+    border-radius: 0.9rem;
+    margin-right: 0.6em;
+    box-shadow: 0 1px 12px #b1cafe55;
+    background: #fff;
+}
+.navbar-nav .nav-link {
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.7em 1.3em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    border-radius: 1.5em;
+    color: #fafdff !important;
+    transition: background .12s;
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
+    background: linear-gradient(90deg, #33b1fa 30%, #1d5cff 90%);
+    color: #fff !important;
+    box-shadow: 0 2px 12px #2d6cfa33;
+}
+
+/* ---- TITRES ET BLOCS ---- */
+h1, h2, h3, .display-4 {
+    font-family: 'Poppins', 'Inter', Arial, sans-serif;
+    font-weight: 800;
+    color: #183c8e;
+    letter-spacing: 0.6px;
+}
+.container {
+    max-width: 1200px;
+}
+section {
+    margin-bottom: 2.7rem;
+}
+hr {
+    border: 0; height: 1.4px;
+    background: linear-gradient(90deg, #1d5cff44 0%, #fff 100%);
+    margin: 2.2rem 0;
+}
+
+/* ---- CARDS ---- */
+.card {
+    border: none;
+    border-radius: 1.6rem;
+    background: rgba(255,255,255,0.91);
+    box-shadow: 0 8px 28px rgba(54, 72, 155, 0.11), 0 1.5px 6px #c3d3fa18;
+    transition: transform .17s, box-shadow .15s;
+    overflow: hidden;
+    position: relative;
+}
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 48px rgba(33,82,220,0.13), 0 4px 24px #58d3e745;
+}
+.card-img-top {
+    border-radius: 1.6rem 1.6rem 0 0;
+    max-height: 210px;
+    object-fit: cover;
+    border-bottom: 3.5px solid #58d3e7;
+    box-shadow: 0 4px 18px #1d5cff15;
+}
+.card-title {
+    font-weight: 700;
+    color: #1d5cff;
+    font-size: 1.25rem;
+}
+.badge {
+    font-size: 1.03rem;
+    padding: .53em 1.08em;
+    border-radius: 1.3rem;
+    font-weight: 500;
+    background: linear-gradient(90deg,#1d5cff 5%,#58d3e7 100%);
+    color: #fff;
+    box-shadow: 0 2px 7px #1d5cff20;
+}
+.card .btn, .btn {
+    border-radius: 1.2rem;
+    font-weight: 600;
+    font-size: 1.08rem;
+    box-shadow: 0 2px 12px #1d5cff13;
+    padding: .7em 1.3em;
+    margin-top: .6em;
+}
+.btn-primary {
+    background: linear-gradient(90deg,#1d5cff 10%,#58d3e7 100%);
+    border: none;
+}
+.btn-primary:hover {
+    background: linear-gradient(90deg,#183e8e 80%,#33bad9 100%);
+}
+.btn-outline-primary {
+    border: 2px solid #1d5cff;
+    color: #1d5cff;
+    background: #fafdff;
+}
+.btn-outline-primary:hover {
+    background: #1d5cff;
+    color: #fff;
+}
+.form-control, .form-select {
+    border-radius: 1.2rem;
+    border: 1.3px solid #c3d3fa;
+    background: #fafdff;
+    font-size: 1.08rem;
+    padding: .78em 1.22em;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2.7px #b8e0fc !important;
+    border-color: #58d3e7;
+}
+
+/* ---- TABLES ET PLANNING ---- */
+.table {
+    background: #f6faff;
+    border-radius: 1.2rem;
+    overflow: hidden;
+}
+.table th, .table td {
+    border: none;
+    padding: .8em 1em;
+    vertical-align: middle;
+    font-size: 1.08rem;
+}
+.table-success {
+    background: linear-gradient(90deg,#e6fff7 60%,#b2ffea 100%);
+    color: #195b40;
+}
+.table-danger {
+    background: linear-gradient(90deg,#ffe6e6 60%,#ffd6d6 100%);
+    color: #a93b3b;
+}
+
+/* ---- FOOTER ---- */
+footer {
+    border-radius: 2rem 2rem 0 0;
+    margin-top: 3rem;
+    background: linear-gradient(90deg, #1d5cff 10%, #58d3e7 100%);
+    color: #fff;
+    letter-spacing: 1px;
+    font-size: 1.14rem;
+    font-weight: 600;
+    box-shadow: 0 -8px 42px #1d5cff12;
+    text-align: center;
+    padding: 2.1em 0 1.1em 0;
+    position: relative;
+}
+footer::before {
+    content: "";
+    position: absolute;
+    top: -17px; left: 35%; right: 35%;
+    height: 14px; border-radius: 7px 7px 0 0;
+    background: #fff;
+    opacity: .13;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 700px) {
+    .container { max-width: 99vw; }
+    .navbar { border-radius: 0 0 1.2rem 1.2rem; }
+    .card { border-radius: 1rem; }
+    .card-img-top { border-radius: 1rem 1rem 0 0; }
+    footer { border-radius: 1rem 1rem 0 0; font-size: 1rem; }
+    h1, h2, .display-4 { font-size: 1.7rem !important; }
+}
