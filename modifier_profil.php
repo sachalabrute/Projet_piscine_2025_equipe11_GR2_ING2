@@ -3,7 +3,7 @@ require_once 'includes/db.php';
 include 'includes/header.php';
 session_start();
 
-// Vérifier que l'utilisateur est connecté
+// Vérifier que l'utilisateur est bien connecté
 if (!isset($_SESSION['user'])) {
     header("Location: login.php?redirect=modifier_profil.php");
     exit;
