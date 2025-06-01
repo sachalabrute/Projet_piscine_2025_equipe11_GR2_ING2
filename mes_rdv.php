@@ -37,7 +37,6 @@ $stmt = $pdo->prepare("
 $stmt->execute(['uid' => $user_id]);
 $rdvs = $stmt->fetchAll();
 ?>
-
 <section>
     <div class="container my-5">
         <h1 class="main-title"><i class="bi bi-calendar3"></i> Mes rendez-vous</h1>
