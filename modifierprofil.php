@@ -6,7 +6,7 @@ require_once 'includes/db.php';
 if (!isset($_SESSION['user'])) {
     header("Location: login.php?redirect=modifier_profil.php");
     exit;
-};
+}
 
 $user = $_SESSION['user'];
 
